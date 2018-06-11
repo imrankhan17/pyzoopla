@@ -1,0 +1,27 @@
+# Python
+*.pyc
+__pycache__/
+spark-warehouse
+.pytest_cache/
+htmlcov/
+.coverage
+
+# Notebooks
+*.ipynb
+.ipynb_checkpoints/
+notebooks/
+
+# PyCharm
+.idea/
+
+# Bash
+*.sh
+
+# Data
+*.crc
+*.parquet
+land_registry/
+data/
+
+# Logs
+logs/

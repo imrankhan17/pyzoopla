@@ -1,0 +1,12 @@
+image: python:3.6.4
+
+pipelines:
+  default:
+    - step:
+        caches:
+          - pip
+        script:
+          - pip install -r requirements.txt
+          - python -m pycodestyle --max-line-length=119 .
+          - python -m pylint *.py pyzoopla
+          - python -m pytest --cov=pyzoopla --durations=5 tests/
