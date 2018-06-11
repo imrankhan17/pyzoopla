@@ -3,6 +3,9 @@
 # Use multiple processes to speed up Pylint.
 jobs=4
 
+# Add files or directories to the blacklist. They should be base names, not paths.
+ignore=setup.py
+
 [FORMAT]
 
 # Maximum number of characters on a single line.
