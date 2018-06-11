@@ -1,10 +1,7 @@
 beautifulsoup4==4.6.0
 bs4==0.0.1
-certifi==2018.1.18
-chardet==3.0.4
 codecov==2.0.15
 httmock==1.2.6
-idna==2.6
 lxml==4.2.1
 numpy==1.14.2
 pandas==0.22.0
@@ -12,8 +9,4 @@ pycodestyle==2.4.0
 pylint==1.9.1
 pytest==3.6.1
 pytest-cov==2.5.1
-python-dateutil==2.7.2
-pytz==2018.4
 requests==2.18.4
-six==1.11.0
-urllib3==1.22

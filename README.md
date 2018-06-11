@@ -1,5 +1,8 @@
 # pyzoopla
 
+[![Build Status](https://travis-ci.org/imrankhan17/properties.svg?branch=master)](https://travis-ci.org/imrankhan17/properties) 
+[![codecov](https://codecov.io/gh/imrankhan17/properties/branch/master/graph/badge.svg)](https://codecov.io/gh/imrankhan17/properties)  
+
 A Python package to access functionality from the [Zoopla](https://www.zoopla.co.uk/) website.  Allows you to search for detailed information on properties currently for sale/to rent, as well as look up house prices and values.
 
 ## Installation
@@ -62,7 +65,3 @@ https://www.zoopla.co.uk/property/1-kendrick-mews/london/sw7-3hg/23191054
 >>> prop.sales_history()
 {'date': ['Jul 2002', 'Feb 2000'], 'status': ['Sold', 'Sold'], 'price': [850000, 660000], 'listing_id': [nan, nan]}
 ```
-
-
-[![Build Status](https://travis-ci.org/imrankhan17/properties.svg?branch=master)](https://travis-ci.org/imrankhan17/properties) 
-[![codecov](https://codecov.io/gh/imrankhan17/properties/branch/master/graph/badge.svg)](https://codecov.io/gh/imrankhan17/properties)  
