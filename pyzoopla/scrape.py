@@ -5,7 +5,7 @@ from pyzoopla.prices import PricesSearch
 from pyzoopla.properties import PropertyDetails
 from pyzoopla.utils import output_data
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)-15s %(levelname)s %(funcName)s:%(lineno)d - %(msg)s')
+logging.basicConfig(level=logging.INFO, format='%(asctime)-15s %(funcName)s:%(lineno)d %(levelname)s - %(msg)s')
 
 
 class PropertyScraper:
@@ -19,13 +19,14 @@ class PropertyScraper:
         try:
             _ = search.assumed_search_location
         except AttributeError:
-            logging.critical('No location named \'%s\'', self.location)
+            logging.critical('No location named \'{}\''.format(self.location))
             sys.exit()
 
-        logging.info('Found %s properties in location: %s.', search.total_properties, search.assumed_search_location)
+        logging.info('Found {:,} properties in location: {}.'.format(search.total_properties,
+                                                                     search.assumed_search_location))
 
         if search.total_properties > 100000:
-            logging.warning('There are more than 100,000 properties for this location.')
+            logging.warning('There are more than 100,000 properties in this location.')
 
         return search
 
@@ -39,8 +40,8 @@ class PropertyScraper:
         """Output csv data to disk."""
         for prop_id in self._get_property_ids():
             prop = PropertyDetails(prop_id)
-            logging.info('Scraping details for property: %s', prop.listing_id)
+            logging.info('Scraping details for property: {}'.format(prop.listing_id))
             output_data(prop.all_data(), self.location)
 
-        logging.info('Finished scraping property details for location: %s.  Data has been saved to: %s',
-                     self.search_prices().assumed_search_location, 'data/data_{}.csv'.format(self.location).lower())
+        logging.info('Finished scraping property details for location: {}.  Data has been saved to: {}'.format(
+                     self.search_prices().assumed_search_location, 'data/data_{}.csv'.format(self.location).lower()))
