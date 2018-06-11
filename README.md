@@ -1,5 +1,6 @@
 # pyzoopla
 
+[![PyPI version](https://badge.fury.io/py/pyzoopla.svg)](https://pypi.org/project/pyzoopla/) 
 [![Build Status](https://travis-ci.org/imrankhan17/properties.svg?branch=master)](https://travis-ci.org/imrankhan17/properties) 
 [![codecov](https://codecov.io/gh/imrankhan17/properties/branch/master/graph/badge.svg)](https://codecov.io/gh/imrankhan17/properties)  
 
