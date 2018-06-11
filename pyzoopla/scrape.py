@@ -44,4 +44,4 @@ class PropertyScraper:
             output_data(prop.all_data(), self.location)
 
         logging.info('Finished scraping property details for location: {}.  Data has been saved to: {}'.format(
-                     self.search_prices().assumed_search_location, 'data/data_{}.csv'.format(self.location).lower()))
+            self.search_prices().assumed_search_location, 'data/data_{}.csv'.format(self.location).lower()))
