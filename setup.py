@@ -6,7 +6,7 @@ with open('README.md', 'r') as f:
 
 setuptools.setup(
     name='pyzoopla',
-    version='0.1.1',
+    version='0.1.2',
     author='Imran Khan',
     author_email='imrankhan17@hotmail.co.uk',
     description='A Python package to access information about properties from Zoopla',

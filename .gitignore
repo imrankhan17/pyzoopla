@@ -1,7 +1,8 @@
 # Python
 *.pyc
 __pycache__/
-spark-warehouse
+
+# Pytest
 .pytest_cache/
 htmlcov/
 .coverage
@@ -10,7 +11,6 @@ htmlcov/
 dist/
 build/
 *.egg-info/
-
 
 # Notebooks
 *.ipynb
@@ -24,9 +24,6 @@ notebooks/
 *.sh
 
 # Data
-*.crc
-*.parquet
-land_registry/
 data/
 
 # Logs
