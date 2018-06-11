@@ -1,0 +1,12 @@
+language: python
+
+python:
+  - "3.6"
+
+install:
+  - pip install -r requirements.txt
+
+script:
+  - python -m pycodestyle --max-line-length=119 .
+  - python -m pylint *.py pyzoopla
+  - python -m pytest --cov=pyzoopla --durations=5 tests/
