@@ -6,6 +6,12 @@ spark-warehouse
 htmlcov/
 .coverage
 
+# PyPI
+dist/
+build/
+*.egg-info/
+
+
 # Notebooks
 *.ipynb
 .ipynb_checkpoints/
