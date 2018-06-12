@@ -33,7 +33,7 @@ class PropertyScraper:
     def _get_property_ids(self, page_limit=None):
         props = self.search_prices()
         n_pages = page_limit if page_limit else props.total_pages
-        logging.info('About to scrape %s pages of properties.', n_pages)
+        logging.info('About to scrape {} pages of properties.'.format(n_pages))
         return props.all_properties(page_limit=page_limit)
 
     def save_data(self):
