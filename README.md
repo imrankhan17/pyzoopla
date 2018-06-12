@@ -1,7 +1,8 @@
 # pyzoopla
 
 [![PyPI version](https://badge.fury.io/py/pyzoopla.svg)](https://pypi.org/project/pyzoopla/) 
-[![Build Status](https://travis-ci.org/imrankhan17/pyzoopla.svg?branch=master)](https://travis-ci.org/imrankhan17/pyzoopla) 
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pyzoopla.svg)
+[![Build Status](https://travis-ci.org/imrankhan17/pyzoopla.svg?branch=master)](https://travis-ci.org/imrankhan17/pyzoopla)
 [![codecov](https://codecov.io/gh/imrankhan17/pyzoopla/branch/master/graph/badge.svg)](https://codecov.io/gh/imrankhan17/pyzoopla)  
 
 A Python package to access functionality from the [Zoopla](https://www.zoopla.co.uk/) website.  Allows you to search for detailed information on properties currently for sale/to rent, as well as look up house prices and values.
