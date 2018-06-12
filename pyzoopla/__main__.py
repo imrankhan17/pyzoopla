@@ -1,6 +1,6 @@
 import argparse
 
-from pyzoopla.scrape import PropertyScraper
+from .scrape import PropertyScraper
 
 
 def main():

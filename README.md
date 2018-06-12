@@ -67,3 +67,7 @@ https://www.zoopla.co.uk/property/1-kendrick-mews/london/sw7-3hg/23191054
 >>> prop.sales_history()
 {'date': ['Jul 2002', 'Feb 2000'], 'status': ['Sold', 'Sold'], 'price': [850000, 660000], 'listing_id': [nan, nan]}
 ```
+
+_pyzoopla_ can also be used on the command line.  To scrape the property details for a given location:
+
+[![demo](https://asciinema.org/a/kWNTJfEOxcpdVYIXisXAjpynj.png)](https://asciinema.org/a/kWNTJfEOxcpdVYIXisXAjpynj?autoplay=1)

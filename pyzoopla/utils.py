@@ -71,12 +71,16 @@ def text_inbetween(text, left, right):
     return re.search(r'{}(.*){}'.format(left, right), text).group(1)
 
 
-def output_data(df, location):
+def output_data(df, location, output_dir='data'):
     """
     Outputs csv data to disk.  Checks to see if file exists first in which case
     it will append to this file otherwise create new file.
     """
-    file_path = 'data/data_{}.csv'.format(location).lower()
+
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    file_path = '{}/data_{}.csv'.format(output_dir, location).lower()
     if os.path.isfile(file_path):
         df.to_csv(file_path, mode='a', index=False, header=False)
     else:
