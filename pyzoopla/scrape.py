@@ -26,21 +26,20 @@ class PropertyScraper:
                                                                      search.assumed_search_location))
 
         if search.total_properties > 100000:
-            logging.warning('A maximum of 100,000 properties will be scraped for this location.')
+            logging.warning('A maximum of 100,000 properties can be scraped for this location.')
 
-        return search
+        return search, search.assumed_search_location, search.total_pages
 
-    def _get_property_ids(self, page_limit=None):
-        props = self.search_prices()
-        n_pages = page_limit if page_limit else props.total_pages
-        logging.info('About to scrape {} pages of properties.'.format(n_pages))
-        return props.all_properties(page_limit=page_limit)
+    def _get_property_ids(self):
+        props, location, n_pages = self.search_prices()
+        logging.info('About to scrape {} pages of properties for location {}.'.format(n_pages, location))
+        return props.all_properties()
 
     def save_data(self, output_dir='data'):
         """Output csv data to disk."""
         for prop_id in self._get_property_ids():
+            logging.info('Scraping details for property ID: {}'.format(prop_id))
             prop = PropertyDetails(prop_id)
-            logging.info('Scraping details for property ID: {}'.format(prop.listing_id))
             output_data(df=prop.all_data(), output_dir=output_dir, location=self.location)
 
         logging.info('Finished scraping property details.  Data has been saved to: {}'
