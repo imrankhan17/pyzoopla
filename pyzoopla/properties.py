@@ -96,7 +96,7 @@ class PropertyDetails(BaseProperty):
 
         return pd.DataFrame(history) if dataframe else history
 
-    def all_data(self):
+    def all_data(self, dataframe=True):
 
         data = self.details()
         data['address'] = str(self).split('Property details for ')[-1].split(' - Zoopla')[0]
@@ -108,4 +108,4 @@ class PropertyDetails(BaseProperty):
         data['sales_history'] = self.sales_history()
         data['date_generated'] = datetime.now()
 
-        return pd.DataFrame.from_dict(data, orient='index').T
+        return pd.DataFrame.from_dict(data, orient='index').T if dataframe else data

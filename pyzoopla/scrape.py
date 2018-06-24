@@ -1,9 +1,10 @@
 import logging
+import pymysql
 import sys
 
 from pyzoopla.prices import PricesSearch
 from pyzoopla.properties import PropertyDetails
-from pyzoopla.utils import output_data
+from pyzoopla.utils import insert_into_db
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)-15s %(funcName)s:%(lineno)d %(levelname)s - %(msg)s')
 
@@ -35,12 +36,18 @@ class PropertyScraper:
         logging.info('About to scrape {} pages of properties for location {}.'.format(n_pages, location))
         return props.all_properties()
 
-    def save_data(self, output_dir='data'):
+    def save_data(self, database=None, port=None, user=None, password=None, schema=None, table=None):
         """Output csv data to disk."""
+
+        db_conn = pymysql.connect(host=database, port=port, user=user, password=password,
+                                  cursorclass=pymysql.cursors.DictCursor)
+        cur = db_conn.cursor()
+        logging.info('Connected to database host: {}'.format(database))
+
         for prop_id in self._get_property_ids():
             logging.info('Scraping details for property ID: {}'.format(prop_id))
             prop = PropertyDetails(prop_id)
-            output_data(df=prop.all_data(), output_dir=output_dir, location=self.location)
+            insert_into_db(db_conn=db_conn, cur=cur, data=prop.all_data(dataframe=False), schema=schema, table=table)
 
-        logging.info('Finished scraping property details.  Data has been saved to: {}'
-                     .format('{}/data_{}.csv'.format(output_dir, self.location).lower()))
+        db_conn.close()
+        logging.info('Finished scraping property details')
