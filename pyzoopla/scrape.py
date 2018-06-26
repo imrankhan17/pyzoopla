@@ -45,9 +45,14 @@ class PropertyScraper:
         logging.info('Connected to database host: {}'.format(database))
 
         for prop_id in self._get_property_ids():
-            logging.info('Scraping details for property ID: {}'.format(prop_id))
-            prop = PropertyDetails(prop_id)
-            insert_into_db(db_conn=db_conn, cur=cur, data=prop.all_data(dataframe=False), schema=schema, table=table)
+            try:
+                logging.info('Scraping details for property ID: {}'.format(prop_id))
+                prop = PropertyDetails(prop_id)
+                insert_into_db(db_conn=db_conn, cur=cur, data=prop.all_data(dataframe=False), schema=schema,
+                               table=table)
+            except AttributeError as err:
+                logging.info('Could not scrape property ID {}: {}'.format(prop_id, err))
+                continue
 
         db_conn.close()
         logging.info('Finished scraping property details')

@@ -21,6 +21,7 @@ setuptools.setup(
         'lxml',
         'numpy',
         'pandas',
+        'pymysql'
         'requests'
     ],
     classifiers=(
