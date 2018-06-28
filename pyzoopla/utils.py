@@ -97,7 +97,7 @@ def insert_into_db(db_conn, cur, data, schema, table):
     :param table: name of sql table
     """
     placeholder = ', '.join(['%s'] * len(data))
-    insert_query = 'insert into {schema}.{table} ({columns}) values ({values});'.format(
+    insert_query = 'replace into {schema}.{table} ({columns}) values ({values});'.format(
         schema=schema, table=table, columns=','.join(data.keys()), values=placeholder)
     cur.execute(insert_query, [str(i) for i in data.values()])
     db_conn.commit()

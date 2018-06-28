@@ -37,7 +37,7 @@ class PropertyScraper:
         return props.all_properties()
 
     def save_data(self, database=None, port=None, user=None, password=None, schema=None, table=None):
-        """Output csv data to disk."""
+        """Output csv data to sql database."""
 
         db_conn = pymysql.connect(host=database, port=port, user=user, password=password,
                                   cursorclass=pymysql.cursors.DictCursor)
