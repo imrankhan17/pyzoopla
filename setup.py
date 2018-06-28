@@ -6,13 +6,13 @@ with open('README.md', 'r') as f:
 
 setuptools.setup(
     name='pyzoopla',
-    version='0.1.4',
+    version='0.1.6',
     author='Imran Khan',
     author_email='imrankhan17@hotmail.co.uk',
     description='A Python package to access information about properties from Zoopla',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/imrankhan17/properties',
+    url='https://github.com/imrankhan17/pyzoopla',
     packages=setuptools.find_packages(),
     license='MIT',
     install_requires=[
@@ -21,7 +21,7 @@ setuptools.setup(
         'lxml',
         'numpy',
         'pandas',
-        'pymysql'
+        'pymysql',
         'requests'
     ],
     classifiers=(

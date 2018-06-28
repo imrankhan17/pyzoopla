@@ -1,13 +1,7 @@
 beautifulsoup4==4.6.0
 bs4==0.0.1
-codecov==2.0.15
-httmock==1.2.6
 lxml==4.2.1
 numpy==1.14.2
 pandas==0.22.0
-pycodestyle==2.4.0
 PyMySQL==0.8.1
-pylint==1.9.1
-pytest==3.6.1
-pytest-cov==2.5.1
 requests==2.18.4
