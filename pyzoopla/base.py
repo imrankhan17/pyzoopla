@@ -89,7 +89,7 @@ class BasePurchaseSearch(BaseSearch):
     def assumed_search_location(self):
         return self.soup.find(name='span', attrs={'class': 'maps-area-name'}).b.text
 
-    def _all_listings_page(self, page_no):
+    def all_listings_page(self, page_no):
         """Search result details for a single page"""
 
         soup = self.soup if page_no == 1 else self._get_soup(page_no)
@@ -125,11 +125,11 @@ class BasePurchaseSearch(BaseSearch):
 
     def all_listings(self, page_limit=None):
         """
-        Summary of search results.
+        Summary of search results for all pages.
         :param page_limit: number of search result pages to consider.
         :return: Pandas dataframe.
         """
 
         page_limit = self.total_pages if not page_limit else page_limit
-        data = [self._all_listings_page(page) for page in range(1, page_limit + 1)]
+        data = [self.all_listings_page(page) for page in range(1, page_limit + 1)]
         return pd.concat(data).reset_index(drop=True)

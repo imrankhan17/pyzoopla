@@ -16,7 +16,10 @@ def test_listing_few_details():
     assert str(results) == 'https://ww2.zoopla.co.uk/for-sale/details/47902463'
     assert results.listing_id == 47902463
     assert results.slug == 'for-sale/details'
-    assert results.details(dataframe=False) == {
+
+    data = results.details(dataframe=False)
+    del data['date_generated']
+    assert data == {
         'listing_id': 47902463,
         'description': "\n                        A lovely three, three bathroom bedroom third floor Marylebone "
                        "apartment in a prestigious mansion block with lift and porter. Beautifully presented "
@@ -51,7 +54,10 @@ def test_listing_more_details():
     assert str(results) == 'https://ww2.zoopla.co.uk/for-sale/details/38834402'
     assert results.listing_id == 38834402
     assert results.slug == 'for-sale/details'
-    assert results.details(dataframe=True).to_dict() == {
+
+    data = results.details(dataframe=True).to_dict()
+    del data['date_generated']
+    assert data == {
         'listing_id': {0: 38834402},
         'description': {0: '\n                        Set within a superb portered building just south of Oxford '
                            'Street, this fantastic two bedroom, two bathroom apartment offers beautifully presented '
@@ -86,7 +92,10 @@ def test_historical_listing_details():
     assert str(results) == 'Property history of 108 Shoreditch High Street, London E1 6JN, \n29th May 2015'
     assert results.listing_id == 37047136
     assert results.slug == 'property-history'
-    assert results.details(dataframe=False) == {
+
+    data = results.details(dataframe=False)
+    del data['date_generated']
+    assert data == {
         'listing_id': 37047136,
         'description': ". . .                 This wonderfully bright and spacious one bedroom apartment occupies the "
                        "third floor of a sympathetically restored Victorian building.Offering approximately 734 sq. "

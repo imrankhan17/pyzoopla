@@ -1,3 +1,4 @@
+from datetime import datetime
 import pandas as pd
 
 from pyzoopla.base import BaseProperty
@@ -29,7 +30,7 @@ class PropertyListing(BaseProperty):
                                                attrs={'class': 'dp-features__list ui-list-bullets'})).split('\n')[1:-1]
         price_history = self._price_history()
         data = {'listing_id': self.listing_id, 'description': description, 'main_features': main,
-                'more_features': features, 'price_history': price_history}
+                'more_features': features, 'price_history': price_history, 'date_generated': datetime.now()}
 
         return pd.DataFrame.from_dict(data, orient='index').T if dataframe else data
 
@@ -50,6 +51,7 @@ class PropertyHistoricalListing(BaseProperty):
         string = self.soup.find(name='div', attrs={'id': 'historic-listing-content'}).text
         features = text_inbetween(string.replace('\n', '. '), 'Property features', 'Property description')
         description = text_inbetween(string.replace('\n', '. '), 'Property description', 'Previously marketed by')
-        data = {'listing_id': self.listing_id, 'description': description, 'features': features}
+        data = {'listing_id': self.listing_id, 'description': description, 'features': features,
+                'date_generated': datetime.now()}
 
         return pd.DataFrame.from_dict(data, orient='index').T if dataframe else data
