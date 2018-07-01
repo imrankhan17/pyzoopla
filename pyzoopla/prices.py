@@ -40,15 +40,22 @@ class PricesSearch(BaseSearch):
         soup = self._get_soup(page_no)
         return self._extract_ids(soup)
 
-    def all_properties(self, page_limit=None):
+    def all_properties(self, page_start=None, page_end=None):
+        """
+        List of all property ID's for specified location.
+        :param page_start: page no. to start scraping from
+        :param page_end: page no. to scrape till
+        :return: list of ID's
+        """
 
-        n_pages = page_limit if page_limit else self.total_pages
+        page_start = page_start if page_start else 1
+        page_end = page_end if page_end else self.total_pages + 1
 
-        if n_pages == 1:
+        if page_end == 1:
             return self._extract_ids(self.soup)
         else:
-            prop_id_list = [self._get_ids_page(page_no) for page_no in range(2, n_pages + 1)]
-            return self._extract_ids(self.soup) + list(chain(*prop_id_list))
+            prop_id_list = [self._get_ids_page(page_no) for page_no in range(page_start, page_end + 1)]
+            return list(chain(*prop_id_list))
 
     def market_activity(self, period=20, property_type='all'):
         """

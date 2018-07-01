@@ -1,6 +1,8 @@
 import logging
 import pymysql
+import requests
 import sys
+import time
 
 from pyzoopla.for_sale import ForSaleSearch
 from pyzoopla.listing import PropertyListing
@@ -39,10 +41,10 @@ class PropertyScraper(BaseScraper):
 
         return search, search.assumed_search_location, search.total_pages
 
-    def _get_property_ids(self):
+    def _get_property_ids(self, page_start=None, page_end=None):
         props, location, n_pages = self.search_prices()
         logging.info('About to scrape {} pages of properties for location {}.'.format(n_pages, location))
-        return props.all_properties()
+        return props.all_properties(page_start, page_end)
 
     def save_data(self, database=None, port=None, user=None, password=None):
 
@@ -63,11 +65,15 @@ class PropertyScraper(BaseScraper):
                     logging.info('Scraping details for property listing ID: {}'.format(listing_id))
                     listing = PropertyListing(listing_id)
                     insert_into_db(db_conn=db_conn, data=listing.details(dataframe=False), schema='zdb',
-                                   table='listings')
+                                   table='listings_description')
 
             except AttributeError as err:
-                logging.info('Could not scrape property ID {}: {}'.format(prop_id, err))
+                logging.warning('Could not scrape property ID {}: {}'.format(prop_id, err))
                 continue
+
+            except requests.ConnectionError as err:
+                logging.warning('Requests connection error occurred for property ID {}: {}'.format(prop_id, err))
+                time.sleep(3)
 
         db_conn.close()
         logging.info('Finished scraping property details for location {}.'.format(self.location))
