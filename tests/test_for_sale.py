@@ -16,6 +16,7 @@ def test_simple_search():
         results = ForSaleSearch(location='london')
 
     df_out = results.all_listings(page_limit=1).drop('date_generated', axis=1)
+    df_out.listing_price = df_out.listing_price.astype('str')
     df_expected = pd.read_csv('tests/test_data/london_expected.csv', dtype={'listing_id': 'str'},
                               parse_dates=['listing_date'], keep_default_na=False)
 
@@ -52,7 +53,7 @@ def test_complex_search():
                            'pn=1&feature=has_parking_garage'
     assert results.slug == 'new-homes'
     assert results.assumed_search_location == 'SW7'
-    assert results.total_properties == 82
+    assert results.total_properties == 99
     assert results.total_pages == 1
     assert results.new_build
     assert results.distance == 10

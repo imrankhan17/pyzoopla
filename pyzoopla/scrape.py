@@ -83,11 +83,11 @@ class SearchResultsScraper(BaseScraper):
 
     def save_data(self, database=None, port=None, user=None, password=None):
 
-        db_conn = pymysql.connect(host=database, port=port, user=user, password=password,
+        db_conn = pymysql.connect(host=database, port=port, user=user, password=password, charset='utf8',
                                   cursorclass=pymysql.cursors.DictCursor)
         logging.info('Connected to database host: {}'.format(database))
 
-        search = ForSaleSearch(self.location)
+        search = ForSaleSearch(self.location, distance=10)
         logging.info('Found {} properties in {} pages for location {}.'.format(search.total_properties,
                                                                                search.total_pages,
                                                                                search.assumed_search_location))
@@ -103,4 +103,4 @@ class SearchResultsScraper(BaseScraper):
                     continue
 
         db_conn.close()
-        logging.info('Finished scraping property details for location {}.'.format(search.assumed_search_location))
+        logging.info('Finished scraping listing details for location {}.'.format(search.assumed_search_location))

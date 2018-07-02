@@ -58,7 +58,7 @@ class BaseSearch(Base):
     """
 
     def __init__(self, location, page_size=None):
-        self.location = location
+        self.location = location.replace(' ', '-')
         self.page_size = page_size
         super(BaseSearch, self).__init__()
 
@@ -87,7 +87,7 @@ class BasePurchaseSearch(BaseSearch):
 
     @property
     def assumed_search_location(self):
-        return self.soup.find(name='span', attrs={'class': 'maps-area-name'}).b.text
+        return self.soup.find(name='title').text.split(' in ')[-1].split(' - ')[0]
 
     def all_listings_page(self, page_no):
         """Search result details for a single page"""
