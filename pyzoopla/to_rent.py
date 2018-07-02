@@ -15,13 +15,14 @@ class ToRentSearch(BasePurchaseSearch):
     furnished_state: {furnished, part_furnished, unfurnished}
     """
 
-    def __init__(self, location, page_size=100, slug='to-rent', added=None, available=None, distance=None,
+    slug = 'to-rent'
+
+    def __init__(self, location, page_size=100, added=None, available=None, distance=None,
                  include_rented=None, include_shared_accommodation=None, price_frequency='per_month', min_price=None,
                  max_price=None, min_beds=None, max_beds=None, results_sort=None, has_parking_garage=None,
                  has_garden=None, has_fireplace=None, has_wood_floors=None, has_balcony_terrace=None,
                  is_rural_secluded=None, has_porter_security=None, property_type='property', rental_term=None,
                  pets_allowed=None, bills_included=None, furnished_state=None, keywords=None):
-        self.slug = slug
         self.added = added
         self.available = available
         self.distance = distance

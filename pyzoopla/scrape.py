@@ -4,22 +4,15 @@ import requests
 import sys
 import time
 
+from pyzoopla.base_scraper import BasePurchaseScraper, BaseScraper
 from pyzoopla.for_sale import ForSaleSearch
 from pyzoopla.listing import PropertyListing
 from pyzoopla.prices import PricesSearch
 from pyzoopla.properties import PropertyDetails
+from pyzoopla.to_rent import ToRentSearch
 from pyzoopla.utils import insert_into_db
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)-15s %(funcName)s:%(lineno)d %(levelname)s - %(msg)s')
-
-
-class BaseScraper:
-    def __init__(self, location):
-        self.location = location
-
-    def save_data(self, database=None, port=None, user=None, password=None):
-        """Output data to sql database."""
-        raise NotImplementedError
 
 
 class PropertyScraper(BaseScraper):
@@ -79,28 +72,11 @@ class PropertyScraper(BaseScraper):
         logging.info('Finished scraping property details for location {}.'.format(self.location))
 
 
-class SearchResultsScraper(BaseScraper):
+class ForSaleScraper(BasePurchaseScraper):
+    def __init__(self, location):
+        super(ForSaleScraper, self).__init__(location, ForSaleSearch)
 
-    def save_data(self, database=None, port=None, user=None, password=None):
 
-        db_conn = pymysql.connect(host=database, port=port, user=user, password=password, charset='utf8',
-                                  cursorclass=pymysql.cursors.DictCursor)
-        logging.info('Connected to database host: {}'.format(database))
-
-        search = ForSaleSearch(self.location, distance=10)
-        logging.info('Found {} properties in {} pages for location {}.'.format(search.total_properties,
-                                                                               search.total_pages,
-                                                                               search.assumed_search_location))
-
-        for page in range(1, search.total_pages + 1):
-            df = search.all_listings_page(page)
-            for row in df.to_dict(orient='index').values():
-                try:
-                    logging.info('Scraping details for listing ID: {}'.format(row['listing_id']))
-                    insert_into_db(db_conn=db_conn, data=row, schema='zdb', table='for_sale_listings')
-                except AttributeError as err:
-                    logging.info('Could not scrape listing ID {}: {}'.format(row['listing_id'], err))
-                    continue
-
-        db_conn.close()
-        logging.info('Finished scraping listing details for location {}.'.format(search.assumed_search_location))
+class ToRentScraper(BasePurchaseScraper):
+    def __init__(self, location):
+        super(ToRentScraper, self).__init__(location, ToRentSearch)
