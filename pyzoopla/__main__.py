@@ -15,30 +15,31 @@ def main():
     parser.add_argument('--property', '-r', dest='property', action='store_true', help='Scrape property results')
     parser.add_argument('--sale', '-s', dest='sale', action='store_true', help='Scrape for sale search results')
     parser.add_argument('--rent', '-n', dest='rent', action='store_true', help='Scrape to rent search results')
+    parser.add_argument('--distance', '-c', dest='distance', default=10, help='Radius around location to search')
     args = parser.parse_args()
 
     if args.test:
         properties = PropertyScraper(location=args.loc)
         _ = properties.search_prices()
 
-        for_sale_results = ForSaleScraper(location=args.loc)
+        for_sale_results = ForSaleScraper(location=args.loc, distance=args.distance)
         _ = for_sale_results.search_prices()
 
-        to_rent_results = ToRentScraper(location=args.loc)
+        to_rent_results = ToRentScraper(location=args.loc, distance=args.distance)
         _ = to_rent_results.search_prices()
 
         sys.exit()
 
     if args.property:
-        properties = PropertyScraper(args.loc)
+        properties = PropertyScraper(location=args.loc)
         properties.save_data(database=args.database, port=args.port, user=args.user, password=args.password)
 
     if args.sale:
-        search = ForSaleScraper(args.loc)
+        search = ForSaleScraper(location=args.loc, distance=args.distance)
         search.save_data(database=args.database, port=args.port, user=args.user, password=args.password)
 
     if args.rent:
-        search = ToRentScraper(args.loc)
+        search = ToRentScraper(location=args.loc, distance=args.distance)
         search.save_data(database=args.database, port=args.port, user=args.user, password=args.password)
 
 

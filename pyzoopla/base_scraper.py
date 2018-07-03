@@ -21,12 +21,13 @@ class BaseScraper:
 
 
 class BasePurchaseScraper:
-    def __init__(self, location, scraper_object):
+    def __init__(self, location, distance, scraper_object):
         self.location = location
+        self.distance = distance
         self.scraper_object = scraper_object
 
     def search_prices(self):
-        results = self.scraper_object(location=self.location, distance=10)
+        results = self.scraper_object(location=self.location, distance=self.distance)
 
         try:
             _ = results.assumed_search_location

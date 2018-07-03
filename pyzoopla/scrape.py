@@ -73,10 +73,10 @@ class PropertyScraper(BaseScraper):
 
 
 class ForSaleScraper(BasePurchaseScraper):
-    def __init__(self, location):
-        super(ForSaleScraper, self).__init__(location, ForSaleSearch)
+    def __init__(self, location, distance):
+        super(ForSaleScraper, self).__init__(location, distance, ForSaleSearch)
 
 
 class ToRentScraper(BasePurchaseScraper):
-    def __init__(self, location):
-        super(ToRentScraper, self).__init__(location, ToRentSearch)
+    def __init__(self, location, distance):
+        super(ToRentScraper, self).__init__(location, distance, ToRentSearch)

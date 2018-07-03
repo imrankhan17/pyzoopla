@@ -12,7 +12,7 @@ with open('requirements.txt') as f:
 
 setuptools.setup(
     name='pyzoopla',
-    version='0.1.11',
+    version='0.1.12',
     author='Imran Khan',
     author_email='imrankhan17@hotmail.co.uk',
     description='A Python package to access information about properties from Zoopla',
