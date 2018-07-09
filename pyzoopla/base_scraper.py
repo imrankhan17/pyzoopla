@@ -64,4 +64,5 @@ class BasePurchaseScraper:
                     continue
 
         db_conn.close()
-        logging.info('Finished scraping listing details for location {}.'.format(search_location))
+        logging.info('Finished scraping {} listing details for location {}.'.format(results.slug.replace('-', ' '),
+                                                                                    search_location))
