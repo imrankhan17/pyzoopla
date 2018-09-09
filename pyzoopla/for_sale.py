@@ -1,6 +1,7 @@
 import requests
 
 from pyzoopla.base import BasePurchaseSearch
+from pyzoopla.utils import headers
 
 
 class ForSaleSearch(BasePurchaseSearch):
@@ -75,4 +76,4 @@ class ForSaleSearch(BasePurchaseSearch):
                    'buyer_incentive': self.buyer_incentive, 'keywords': self.keywords}
         url = 'https://www.zoopla.co.uk/{}/{}/{}/'.format(self.slug, self.property_type, self.location)
 
-        return requests.get(url, params=payload)
+        return requests.get(url, params=payload, headers=headers)

@@ -106,6 +106,6 @@ class PropertyDetails(BaseProperty):
         data['property_value'] = self.property_value()
         data['value_change'] = self.value_change().to_dict()
         data['sales_history'] = self.sales_history()
-        data['date_generated'] = datetime.now()
+        data['date_generated'] = datetime.utcnow()
 
         return pd.DataFrame.from_dict(data, orient='index').T if dataframe else data

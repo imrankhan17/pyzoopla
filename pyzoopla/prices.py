@@ -2,6 +2,7 @@ from itertools import chain
 import requests
 
 from pyzoopla.base import BaseSearch
+from pyzoopla.utils import headers
 
 
 class PricesSearch(BaseSearch):
@@ -22,7 +23,7 @@ class PricesSearch(BaseSearch):
     def _get_html(self, page_no=None):
         payload = {'num_months': self.num_months, 'property_type_code': self.property_type_code, 'pn': page_no}
         url = 'https://www.zoopla.co.uk/house-prices/{}/'.format(self.location)
-        return requests.get(url, params=payload)
+        return requests.get(url, params=payload, headers=headers)
 
     @property
     def assumed_search_location(self):

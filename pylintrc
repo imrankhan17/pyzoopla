@@ -15,7 +15,7 @@ max-line-length=119
 
 disable=missing-docstring,too-many-instance-attributes,too-many-arguments,too-many-locals,wrong-import-order,no-else-return,abstract-method,logging-format-interpolation
 
-good-names=df
+good-names=df,headers
 
 [BASIC]
 

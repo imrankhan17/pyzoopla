@@ -3,7 +3,7 @@ from datetime import datetime
 import pandas as pd
 import requests
 
-from pyzoopla.utils import currency_to_num, dist_to_num, get_station_name, text_or_none, to_datetime
+from pyzoopla.utils import currency_to_num, dist_to_num, get_station_name, headers, text_or_none, to_datetime
 
 
 class Base:
@@ -49,7 +49,7 @@ class BaseProperty(Base):
     def _get_html(self, page_no=None):
         payload = {'pn': page_no}
         url = 'https://ww2.zoopla.co.uk/{}/{}'.format(self.slug, self.listing_id)
-        return requests.get(url, params=payload)
+        return requests.get(url, params=payload, headers=headers)
 
 
 class BaseSearch(Base):
@@ -119,7 +119,7 @@ class BasePurchaseSearch(BaseSearch):
         df['distance1'] = [dist_to_num(i.find_all('li', attrs={'class': 'clearfix'})[0]) for i in listings]
         df['station2'] = [get_station_name(i.find_all('li', attrs={'class': 'clearfix'}), 1) for i in listings]
         df['distance2'] = [dist_to_num(i.find_all('li', attrs={'class': 'clearfix'})[1]) for i in listings]
-        df['date_generated'] = datetime.now()
+        df['date_generated'] = datetime.utcnow()
 
         return df
 

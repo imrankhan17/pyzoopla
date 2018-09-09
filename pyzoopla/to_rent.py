@@ -1,6 +1,7 @@
 import requests
 
 from pyzoopla.base import BasePurchaseSearch
+from pyzoopla.utils import headers
 
 
 class ToRentSearch(BasePurchaseSearch):
@@ -77,4 +78,4 @@ class ToRentSearch(BasePurchaseSearch):
                    'keywords': self.keywords}
         url = 'https://www.zoopla.co.uk/{}/{}/{}/'.format(self.slug, self.property_type, self.location)
 
-        return requests.get(url, params=payload)
+        return requests.get(url, params=payload, headers=headers)
