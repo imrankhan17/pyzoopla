@@ -13,8 +13,8 @@ def main():
     parser.add_argument('--password', '-p', dest='password', help='Database password')
     parser.add_argument('--test', '-t', dest='test', action='store_true', help='Get no. of properties for location')
     parser.add_argument('--property', '-r', dest='property', action='store_true', help='Scrape property results')
-    parser.add_argument('--sale', '-s', dest='sale', action='store_true', help='Scrape for sale search results')
-    parser.add_argument('--rent', '-n', dest='rent', action='store_true', help='Scrape to rent search results')
+    parser.add_argument('--sale', '-s', dest='sale', action='store_true', help='Scrape for-sale search results')
+    parser.add_argument('--rent', '-n', dest='rent', action='store_true', help='Scrape to-rent search results')
     parser.add_argument('--distance', '-c', dest='distance', default=10, help='Radius around location to search')
     args = parser.parse_args()
 

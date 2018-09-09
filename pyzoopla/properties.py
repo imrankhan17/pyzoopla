@@ -28,7 +28,7 @@ class PropertyDetails(BaseProperty):
 
     def location(self):
         string = text_inbetween(text=self.html.text.replace('\n', '').replace(' ', ''),
-                                left='"coordinates":', right=',"pin"')
+                                left='"coordinates":', right=',"pin":"https://r.zoocdn.com/assets/map-pin.png')
         string = string.replace('false', 'False').replace('true', 'True')
         return ast.literal_eval(string)
 
@@ -55,10 +55,10 @@ class PropertyDetails(BaseProperty):
 
         if len(values) == 1:
             values.append(np.nan)
-            ranges.extend([np.nan, np.nan])
+            ranges.extend([np.nan] * 2)
         elif not values:
-            values.extend([np.nan, np.nan])
-            ranges.extend([np.nan, np.nan, np.nan, np.nan])
+            values.extend([np.nan] * 2)
+            ranges.extend([np.nan] * 4)
 
         return {'buy': {'value': values[0], 'lower_bound': ranges[0], 'upper_bound': ranges[1]},
                 'rent': {'value': values[1], 'lower_bound': ranges[2], 'upper_bound': ranges[3]},
