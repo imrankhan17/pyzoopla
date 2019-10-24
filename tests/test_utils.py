@@ -58,13 +58,13 @@ def test_to_datetime():
 
 
 def test_get_station_name(station_html):
-    assert get_station_name(soup=data, station_num=0) == 'London Bridge'
-    assert get_station_name(soup=data, station_num=1) == 'Borough'
+    assert get_station_name(soup=station_html, station_num=0) == 'London Bridge'
+    assert get_station_name(soup=station_html, station_num=1) == 'Borough'
 
 
 def test_dist_to_num(station_html):
-    assert dist_to_num(data[0]) == 0.4
-    assert dist_to_num(data[1]) == 1.2
+    assert dist_to_num(station_html[0]) == 0.4
+    assert dist_to_num(station_html[1]) == 1.2
 
 
 def test_text_inbetween():
