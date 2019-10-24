@@ -4,4 +4,4 @@ lxml==4.2.1
 numpy==1.14.2
 pandas==0.22.0
 PyMySQL==0.8.1
-requests==2.18.4
+requests==2.20.0

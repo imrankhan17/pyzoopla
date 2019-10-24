@@ -57,14 +57,12 @@ def test_to_datetime():
     assert to_datetime('21st May 2012') == datetime(2012, 5, 21, 0, 0)
 
 
-def test_get_station_name():
-    data = station_html()
+def test_get_station_name(station_html):
     assert get_station_name(soup=data, station_num=0) == 'London Bridge'
     assert get_station_name(soup=data, station_num=1) == 'Borough'
 
 
-def test_dist_to_num():
-    data = station_html()
+def test_dist_to_num(station_html):
     assert dist_to_num(data[0]) == 0.4
     assert dist_to_num(data[1]) == 1.2
 
