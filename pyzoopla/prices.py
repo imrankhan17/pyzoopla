@@ -31,8 +31,8 @@ class PricesSearch(BaseSearch):
 
     @staticmethod
     def _extract_ids(soup):
-        return [address.a['href'].split('/')[-1] for address in
-                soup.find_all(name='td', attrs={'class': 'browse-cell-address'})]
+        return [address['data-ga-value'] for address in
+                soup.find_all(name='a', attrs={'class': 'hp-card__content'})]
 
     def _get_ids_page(self, page_no):
         """
