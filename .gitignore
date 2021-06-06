@@ -1,6 +1,9 @@
 # OS
 .DS_Store
 
+# virtualenv
+env/
+
 # Python
 *.pyc
 __pycache__/

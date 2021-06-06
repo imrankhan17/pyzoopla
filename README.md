@@ -37,7 +37,7 @@ https://www.zoopla.co.uk/house-prices/hp20/
 {'period': 20, 'property_type': 'all', 'average_price': 1139919, 'num_sales': 7229, 'average_value': 2609459, 'value_change': 1994923}
 >>> results.market_activity(period=1, property_type='terraced')
 {'period': 1, 'property_type': 'terraced', 'average_price': 4494545, 'num_sales': 22, 'average_value': 4347526, 'value_change': -319628}
->>> results.all_properties(page_limit=1)
+>>> results.all_properties(page_end=1)
 ['23188074', '23188094', '23188099', '23188106', '23188193', '23188201', '23188221', '23188313', '23188342', '23188427', '23188464', '23188484', '23188503', '23188543', '23188575', '23188615', '23188657', '23188914', '23188966', '23188979', '23189038', '23189178', '23189398', '23189512', '23189584', '23189685', '23189699', '23189892', '23190158', '23190179', '23190216', '23190302', '23190337', '23190344', '23190382', '23190516', '23190549', '23190747', '23190786', '23191054']
 ```
 
