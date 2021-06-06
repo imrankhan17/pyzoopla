@@ -1,5 +1,5 @@
 beautifulsoup4==4.6.0
-lxml==4.6.2
+lxml==4.6.3
 pandas==1.2.4
 PyMySQL==0.8.1
 requests==2.25.1
