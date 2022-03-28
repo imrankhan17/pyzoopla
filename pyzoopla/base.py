@@ -70,7 +70,7 @@ class BaseSearch(Base):
     @property
     def total_properties(self):
         """Total number of properties matching search criteria."""
-        results = int(zoopla.soup.find(name="p", attrs={"data-testid": "total-results"}).text.split()[0].replace(',', '').replace('+', ''))
+        results = int(self.soup.find(name="p", attrs={"data-testid": "total-results"}).text.split()[0].replace(',', '').replace('+', ''))
         return results
 
     @property
